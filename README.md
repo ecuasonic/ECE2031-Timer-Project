@@ -1,17 +1,20 @@
 # ECE 2031 Final Project
 
-### Recent Changes:
+## SCOMP Timer Peripheral with Expanded Functionality
 
-- `SCOMP2.sof` is the .sof file that was tested on the DE10, and was shown to work, but there is a bug in the assembly code
-    - Line 95
-    - `OUT COUNT` instead of `STORE COUNT` was used on the rocketship countdown.
-    - `COUNT: DW 0`, so COUNT represented an addresss whose value didn't correspond to any IO Address, therefore no IO device effect was seen.
-    - The program appeared to be correct, since the `COUNT_DOWN` subroutine was programmed such that when `timer_counter` = 0, then break out. `timer_counter` = 3 to begin with, and so `COUNT` acted as though `COUNT` = 3 even though `COUNT` = 4 at the time.
-    - `timer_project2.zip` corresponds with SCOMP2.sof
+This project implements an advanced SCOMP (Simple Computer Peripheral) timer with two key components: TIMER and TIMER_FREQ. Each component has its own chip select address, allowing users to interact with both timer and frequency settings through direct I/O instructions. <br>
+**Features**
+- **Direct I/O Control**: Using `IN` and `OUT` instructions, users can set or retrieve:
+    - **Timer Count**: Get the current timer count, or reset it.
+    - **Timer Frequency**: Set frequency, including counting up or down.
 
-- `SCOMP.sof` is fixed .sof file, but untested since lab is closed.
-    - `timer_project.zip` corresponds with SCOMP.sof
+- **Chip Select Addresses**:
+    - `0x2` for **TIMER**
+    - `0x3` for **TIMER_FREQ**
 
+- **Enhanced Functionality**: This implementation builds on the original SCOMP timer, which was limited to counting up at a fixed rate of 0.1 seconds. Now, users have the flexibility to adjust frequency and control count direction (up or down).
+
+This peripheral extends the capabilities of the SCOMP architecture, adding more control and flexibility to timer operations for various applications.
 
 ## Timer Functionality Added:
 
@@ -23,11 +26,11 @@
 
 ## TIMER BDF Structure:
 
-![TIMER.png](https://github.com/ecuasonic/ECE2031-Timer-Project/blob/main/TIMER.png)
+![TIMER-ports](images/TIMER-ports.png)
 
 ## VHDL Organization:
 
-The TIMER and TIMER_FREQ are currently in separate vhdl files, but it is possible to merge them together into a single vhdl file, and have two Chip Select inputs to differ between the two.
+The TIMER and TIMER_FREQ are currently in separate vhdl files, but it is possible to merge them together into a single vhdl file, and have two Chip Select inputs to differ between the two. <br>
 The peripherals are separated for now for debugging simplicity.
 
 ## Assembly Code Example:
@@ -97,7 +100,11 @@ Hex0:       EQU 004
 Hex1:       EQU 005
 ```
 
+## Code in Action
+
+![demo](images/demo.gif)
+
 ## Overall SCOMP_System BDF structure:
 
-![SCOMP_SystemBDF.png](https://github.com/ecuasonic/ECE2031-Timer-Project/blob/main/SCOMP_SystemBDF.png)
+![SCOMP-System-BDF](images/SCOMP-System-BDF.png)
 
