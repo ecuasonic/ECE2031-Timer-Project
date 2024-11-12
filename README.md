@@ -12,9 +12,8 @@
 - `SCOMP.sof` is fixed .sof file, but untested since lab is closed.
     - `timer_project.zip` corresponds with SCOMP.sof
 
-***
 
-### Timer Functionality Added:
+## Timer Functionality Added:
 
 1. TIMER peripheral
     - Stores current counter value
@@ -22,18 +21,16 @@
 2. TIMER_FREQ peripheral
     - Provides user-specified timer speed in Hz
 
-### TIMER BDF Structure:
+## TIMER BDF Structure:
 
 ![TIMER.png](https://github.com/ecuasonic/ECE2031-Timer-Project/blob/main/TIMER.png)
 
-### VHDL Organization:
+## VHDL Organization:
 
 The TIMER and TIMER_FREQ are currently in separate vhdl files, but it is possible to merge them together into a single vhdl file, and have two Chip Select inputs to differ between the two.
 The peripherals are separated for now for debugging simplicity.
 
-***
-
-### Assembly Code Example:
+## Assembly Code Example:
 ```asm
 ; TIMER_TEST.asm
 ; ----------------------------------------------------------
@@ -100,8 +97,7 @@ Hex0:       EQU 004
 Hex1:       EQU 005
 ```
 
-***
-
-### Overall SCOMP_System BDF structure:
+## Overall SCOMP_System BDF structure:
 
 ![SCOMP_SystemBDF.png](https://github.com/ecuasonic/ECE2031-Timer-Project/blob/main/SCOMP_SystemBDF.png)
+
